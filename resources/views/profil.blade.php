@@ -15,7 +15,7 @@
        
        
         <div class="flex justify-start">
-        <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
+        <div class="flex flex-col max-w-sm px-6 py-4  bg-white rounded-lg shadow-md">
     <ul class="-mx-4">
         <li class="flex items-center">Age
             <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Alex John</a><span

@@ -25,6 +25,10 @@ Route::get('/post',function() {
     return view('post');
 })->middleware(['auth', 'verified'])->name('post');
 
+Route::get('/profil',function() {
+    return view('profil');
+})->middleware(['auth', 'verified'])->name('profil');
+
 // Route::get('/', function () {
 // return view('auth.login');
   

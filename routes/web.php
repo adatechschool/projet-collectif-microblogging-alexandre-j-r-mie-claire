@@ -29,6 +29,10 @@ Route::get('/profil',function() {
     return view('profil');
 })->middleware(['auth', 'verified'])->name('profil');
 
+Route::get('/catégories',function() {
+    return view('category');
+})->middleware(['auth', 'verified'])->name('category');
+
 // Route::get('/', function () {
 // return view('auth.login');
   

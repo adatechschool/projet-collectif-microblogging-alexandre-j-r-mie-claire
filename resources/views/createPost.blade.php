@@ -1,10 +1,10 @@
 <x-app-layout>
 
 
-
+¶{{$id}}
     <div class="mt-6 flex">
         <div class=" mb-4 max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-    <form method="POST" action="{{ route('createPost') }}">
+    <form method="POST" action="{{ route('sendPost') }}">
         @csrf
 
          <div class="mt-4">

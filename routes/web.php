@@ -33,6 +33,16 @@ Route::get('/catégories',function() {
     return view('category');
 })->middleware(['auth', 'verified'])->name('category');
 
+Route::get('/monProfil',function() {
+    return view('monProfil');
+})->middleware(['auth', 'verified'])->name('monProfil');
+
+
+Route::post('/createPost:id',function() {
+    return view('createPost');
+})->middleware(['auth', 'verified'])->name('createPost');
+
+
 // Route::get('/', function () {
 // return view('auth.login');
   

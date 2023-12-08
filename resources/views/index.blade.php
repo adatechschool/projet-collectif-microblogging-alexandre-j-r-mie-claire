@@ -20,18 +20,67 @@
             </div>
         </nav>
     
-        <div class="px-6 py-8">
-            <div class="container flex justify-between mx-auto">
-                <div class="w-full lg:w-8/12">
-                    <div class="flex items-center justify-between">
-                        <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Post</h1>
-                        <div>
-                            <select class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                <option>Latest</option>
-                                <option>Last Week</option>
-                            </select>
+        <div class="mt-6">
+            <div class="max-w-4xl px-10 py-4 mx-auto bg-white rounded-lg shadow-md">
+                <div class="flex justify-center">
+                    
+                    <div class="flex-row mb-4 max-w-4xl px-10 py-4 rounded-lg">
+                        <h1 class="text-center ">Crée ton post</h1>
+                        <form method="POST" action="{{ route('sendPost') }}">
+                            @csrf
+                            <x-input-label for="Crée ton post" />
+                           
+                            <div class="mt-4 mb-2">
+                                
+                                <x-text-input id="content" class="block mt-1 w-full"
+                                type="textarea"
+                                name="content"
+                                required  />
+                                
+                                <x-input-error :messages="$errors->get('content')" class="mt-2" />
+                                </div>
+                            
+                                
+                                <div class="mt-4">
+                                    <x-input-label class=" text-center" for="image" :value="__('Image')" />
+                                    
+                                    <x-text-input id="content" class="block mt-1 w-full"
+                                    type="file"
+                                    name="image"
+                                    required  />
+                                    
+                                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    <x-primary-button class=" mt-3 ml-3 flex justify-center" type="submit">
+                                        {{ __('Crée ton post') }}
+                                    </x-primary-button>
+                                    
+                                </div>
+                            </form>
+                            
                         </div>
                     </div>
+                </div>
+                <div class="px-6 py-8">
+                    <div class="container flex justify-between mx-auto">
+                        <div class="w-full lg:w-8/12">
+                            <div class="flex items-center justify-between">
+                                <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Post</h1>
+                                <div>
+                                    <select class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                        <option>Latest</option>
+                                        <option>Last Week</option>
+                                    </select>
+                                </div>
+                            </div>
+                
+                
+
+
                     <div class="mt-6">
                         <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
                             <div class="flex items-center justify-between"><span class="font-light text-gray-600">Jun 1,

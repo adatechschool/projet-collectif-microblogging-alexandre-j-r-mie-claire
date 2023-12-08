@@ -38,9 +38,13 @@ Route::get('/monProfil',function() {
 })->middleware(['auth', 'verified'])->name('monProfil');
 
 
-Route::post('/createPost/{id}',function() {
-    return view('createPost');
+Route::get('/createPost/{id}',function($id) {
+    return view('createPost', compact('id'));
 })->middleware(['auth', 'verified'])->name('createPost');
+
+Route::post('/sendPost',function() {
+    return view('createPost');
+})->middleware(['auth', 'verified'])->name('sendPost');
 
 
 // Route::get('/', function () {

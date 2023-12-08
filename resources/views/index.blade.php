@@ -233,10 +233,10 @@
                 </div>
                 
                 
-                <div class="hidden w-4/12 -mx-8 lg:block">
+                <div class="hidden w-4/12-mx-8 lg:block">
 
 
-                <div class="lg:block">
+                <div class="lg:block mb-4">
                     <div class="px-8">
                     <h1 class="mb-4 text-xl font-bold text-gray-700">Send post</h1>
                 <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">

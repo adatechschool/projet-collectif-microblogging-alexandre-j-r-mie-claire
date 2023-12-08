@@ -38,7 +38,7 @@ Route::get('/monProfil',function() {
 })->middleware(['auth', 'verified'])->name('monProfil');
 
 
-Route::post('/createPost:id',function() {
+Route::post('/createPost/{id}',function() {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('createPost');
 

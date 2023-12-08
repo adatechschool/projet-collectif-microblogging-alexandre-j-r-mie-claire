@@ -20,51 +20,7 @@
             </div>
         </nav>
     
-        <div class="mt-6">
-            <div class="max-w-4xl px-10 py-4 mx-auto bg-white rounded-lg shadow-md">
-                <div class="flex justify-center">
-                    
-                    <div class="flex-row mb-4 max-w-4xl px-10 py-4 rounded-lg">
-                        <h1 class="text-center ">Crée ton post</h1>
-                        <form method="POST" action="{{ route('sendPost') }}">
-                            @csrf
-                            <x-input-label for="Crée ton post" />
-                           
-                            <div class="mt-4 mb-2">
-                                
-                                <x-text-input id="content" class="block mt-1 w-full"
-                                type="textarea"
-                                name="content"
-                                required  />
-                                
-                                <x-input-error :messages="$errors->get('content')" class="mt-2" />
-                                </div>
-                            
-                                
-                                <div class="mt-4">
-                                    <x-input-label class=" text-center" for="image" :value="__('Image')" />
-                                    
-                                    <x-text-input id="content" class="block mt-1 w-full"
-                                    type="file"
-                                    name="image"
-                                    required  />
-                                    
-                                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                                    </div>
-                                    
-                                    
-                                    
-                                    
-                                    <x-primary-button class=" mt-3 ml-3 flex justify-center" type="submit">
-                                        {{ __('Crée ton post') }}
-                                    </x-primary-button>
-                                    
-                                </div>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
+        
                 <div class="px-6 py-8">
                     <div class="container flex justify-between mx-auto">
                         <div class="w-full lg:w-8/12">
@@ -216,7 +172,54 @@
                         </div>
                     </div>
                 </div>
+                
+                
                 <div class="hidden w-4/12 -mx-8 lg:block">
+
+
+                <div class="lg:block">
+                    <div class="px-8">
+                    <h1 class="mb-4 text-xl font-bold text-gray-700">Send post</h1>
+                <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
+             <form method="POST" action="{{ route('sendPost') }}">
+                                    @csrf
+                                    <!-- Post Content Section -->
+                                    <div class="mb-6">
+                                        <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Post Content:</label>
+                                        <textarea id="content" name="content" rows="4" class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm
+                                sm:leading-5 resize-none focus:outline-none focus:border-blue-500" placeholder="What's on your mind?"></textarea>
+                                
+                                    </div>
+                                    <!-- File Attachment Section -->
+                                    <div class="mb-6">
+                                        <label for="fileAttachment" class="block text-gray-700 text-sm font-bold mb-2">Attach File:</label>
+                                        <div class="relative border-2 rounded-md px-4 py-3 bg-white flex items-center justify-between hover:border-blue-500 transition duration-150 ease-in-out">
+                                            <input type="file" id="image" name="image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                            <div class="flex items-center">
+                                                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                                </svg>
+                                                
+                                                <span class="ml-2 text-sm text-gray-600">Choose a file</span>
+                                            </div>
+                                            <span class="text-sm text-gray-500">Max file size: 5MB</span>
+                                        </div>
+                                    </div>
+                                    <!-- Submit Button and Character Limit Section -->
+                                    <div class="flex items-start justify-between mt-4 bg-blue">
+                                        <button type="submit" class="flex justify-start items-center text-blue-500 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue text-black py-2 px-4 rounded-md transition duration-300 gap-2"> Post <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" id="send" fill="#fff">
+                                                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                                                <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"></path>
+                                            </svg>
+                                        </button>
+                                        <span class="text-gray-500 text-sm">Max 280 characters</span>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            
+                            </div>
+                        </div>
                     <div class="px-8">
                         <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
                         <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">

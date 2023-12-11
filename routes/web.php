@@ -48,8 +48,9 @@ Route::post('/sendPost',function() {
 
 
 
-Route::get('/monProfil/{id}',function($id) {
-    $User = User::find($id);
+Route::get('/monProfil/',function() {
+$id = Auth::user()->id;
+$User = User::find($id);
     
 
 
@@ -60,8 +61,8 @@ Route::get('/monProfil/{id}',function($id) {
   
 // });
 
-Route::post('/monProfil/{id}',function($id) {
-  dd($id);
+Route::post('/monProfil/',function() {
+    Auth::user()->id;
 
 
     return view('/monProfile');

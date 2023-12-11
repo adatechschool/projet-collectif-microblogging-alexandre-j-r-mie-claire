@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -56,5 +57,32 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateAvatarOrBio(ProfileUpdateRequest $request ,User $user): RedirectResponse
+    {  {{Auth::user()->name}}
+       
+        
+        
+        $this->validate($request, [
+            'avatar' =>     'bail|required|image|max:1024',
+            "biography" => 'bail|required|string|max:255',
+        ]);
+    
+        // 2. On upload l'image dans "/storage/app/public/posts"
+        $chemin_image = $request->avatar->store("avatar");
+    
+
+
+       
+        // 3. On enregistre les informations du Post
+        User::updating([
+            "avatar" => $chemin_image,
+            "biography" => $request->biography, 
+        ]);
+
+
+
+        return Redirect::to('/profile/{id}');
     }
 }

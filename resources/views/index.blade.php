@@ -1,6 +1,7 @@
 <x-app-layout>
     
-       
+   
+
    
     <div class="overflow-x-hidden bg-gray-100">
        

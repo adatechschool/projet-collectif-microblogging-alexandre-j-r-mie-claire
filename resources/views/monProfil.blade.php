@@ -13,20 +13,27 @@
 
 
                    
-                   <div>
-                   <h1 class="font-bold text-2xl text-gray-700 hover:underline">Alex John</h1>
-                   <div class="image-upload">
-                       <label for="file-input">
+                <form method="POST" action="{{ url('/monProfil/{$User->id}') }}">
+                    @csrf
+                   <div class="flex-col">
+                       <h1 class="font-bold text-2xl text-gray-700 hover:underline">Alex John</h1>
+                       <label for="avatar">
                            <img class="w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1780&amp;q=80"/>
                        </label>
                    
-                       <input class="hidden" id="file-input" type="file"/>
+                       <input class="hidden" id="file-input" name="avatar" type="file"/>
+                       <div class="flex justify-center">
+                       <x-primary-button type="submit">
+                        {{ __('Modifie ta photo') }}
+                       </x-primary-button>
                     </div>
                    </div>
             </div>
+                </form>
             <div class="flex justify-end">
             <div class="flex flex-col max-w-sm px-6 py-4  bg-white rounded-lg shadow-md">
             <ul class="-mx-4">
+            
                 
                 <li><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Alex John</li><span
                         class="text-sm font-light text-gray-700">Created 23 Posts</span></p>

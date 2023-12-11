@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -18,8 +19,13 @@ use App\Models\User;
 
 
 Route::get('/',function() {
-    $Users = User::all();    
-    return view('index',compact('Users'));
+    $Users = User::all(); 
+    $Posts = Post::all();  
+    return view('index',compact('Users', 'Posts'));
+})->middleware(['auth', 'verified'])->name('index');
+
+Route::post('/', function() {
+
 })->middleware(['auth', 'verified'])->name('index');
 
 
@@ -48,11 +54,6 @@ Route::post('/sendPost',function() {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('sendPost');
 
-
-// Route::get('/', function () {
-// return view('auth.login');
-  
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

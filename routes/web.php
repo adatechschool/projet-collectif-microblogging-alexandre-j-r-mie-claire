@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,9 @@ use App\Models\User;
 
 
 
-Route::get('/',function() {
-    $Users = User::all(); 
-    $Posts = Post::all();  
-    return view('index',compact('Users', 'Posts'));
-})->middleware(['auth', 'verified'])->name('index');
+Route::get('/',[PostController::class, 'index'])->middleware(['auth', 'verified'])->name('index');
 
-Route::post('/', function() {
-
-})->middleware(['auth', 'verified'])->name('index');
+Route::post('/', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('createStore');
 
 
 Route::get('/post',function() {

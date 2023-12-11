@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     //indique ce qui doit etre obligatoirement remplis
-    protected $fillable = ['content', 'user_id'];
+    protected $fillable = ['content', 'user_id', 'image_path'];
 
 
     //relation avec la class User

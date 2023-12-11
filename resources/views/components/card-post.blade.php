@@ -3,8 +3,11 @@
         <div class="flex items-center justify-between"><span class="font-light text-gray-600">{{ $post->created_at->format('F j, Y') }}</span><a href="#"
                 class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Design</a>
         </div>
-        <div class="mt-2"><a href="#"
-                class="text-2xl font-bold text-gray-700 hover:underline"><img src="https://placekitten.com/400/300" alt="Post Image" class="w-full h-48 object-cover rounded-md"></a>
+        <div class="mt-2">
+            @empty ($post->image_path)
+            @else
+<img src="{{ asset('storage/images/'.$post->image_path) }}" alt="Post Image" class="w-full h-full object-cover rounded-md">
+            @endempty
             <p class="mt-2 text-gray-600">{{ $post->content }}</p>
         </div>
         <div class="flex items-center justify-between mt-4">

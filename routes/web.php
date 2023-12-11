@@ -35,9 +35,7 @@ Route::get('/catégories',function() {
     return view('category');
 })->middleware(['auth', 'verified'])->name('category');
 
-Route::get('/monProfil',function() {
-    return view('monProfil');
-})->middleware(['auth', 'verified'])->name('monProfil');
+
 
 
 Route::get('/createPost/{id}',function($id) {
@@ -49,10 +47,28 @@ Route::post('/sendPost',function() {
 })->middleware(['auth', 'verified'])->name('sendPost');
 
 
+
+Route::get('/monProfil/{id}',function($id) {
+    $User = User::find($id);
+    
+
+
+    return view('/monProfil', compact('User'));
+})->middleware(['auth', 'verified'])->name('monProfile');
 // Route::get('/', function () {
 // return view('auth.login');
   
 // });
+
+Route::post('/monProfil/{id}',function($id) {
+  dd($id);
+
+
+    return view('/monProfile');
+})->middleware(['auth', 'verified'])->name('updateBio');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

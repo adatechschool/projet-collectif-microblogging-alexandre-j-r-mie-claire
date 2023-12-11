@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,51 +20,50 @@ use App\Models\User;
 
 
 
-Route::get('/',function() {
-    $Users = User::all();    
-    return view('index',compact('Users'));
-})->middleware(['auth', 'verified'])->name('index');
+Route::get('/', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('index');
+
+Route::post('/', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('createStore');
 
 
-Route::get('/post',function() {
+Route::get('/post', function () {
     return view('post');
 })->middleware(['auth', 'verified'])->name('post');
 
-Route::get('/profil',function() {
+Route::get('/profil', function () {
     return view('profil');
 })->middleware(['auth', 'verified'])->name('profil');
 
-Route::get('/catégories',function() {
+Route::get('/catégories', function () {
     return view('category');
 })->middleware(['auth', 'verified'])->name('category');
 
 
 
 
-Route::get('/createPost/{id}',function($id) {
+Route::get('/createPost/{id}', function ($id) {
     return view('createPost', compact('id'));
 })->middleware(['auth', 'verified'])->name('createPost');
 
-Route::post('/sendPost',function() {
+Route::post('/sendPost', function () {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('sendPost');
 
 
 
-Route::get('/monProfil/',function() {
-$id = Auth::user()->id;
-$User = User::find($id);
-    
+Route::get('/monProfil/', function () {
+    $id = Auth::user()->id;
+    $User = User::find($id);
+
 
 
     return view('/monProfil', compact('User'));
 })->middleware(['auth', 'verified'])->name('monProfile');
 // Route::get('/', function () {
 // return view('auth.login');
-  
+
 // });
 
-Route::post('/monProfil/',function() {
+Route::post('/monProfil/', function () {
     Auth::user()->id;
 
 
@@ -81,4 +83,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

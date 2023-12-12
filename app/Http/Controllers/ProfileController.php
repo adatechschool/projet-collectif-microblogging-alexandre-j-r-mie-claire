@@ -87,17 +87,33 @@ public function updateBio(ProfileUpdateRequest $request)
     return redirect('/monProfil/');
 }
 
-// public function updateAvatar(ProfileUpdateRequest $request): RedirectResponse
-// { 
-//     $request->user()->fill($request->validated());
+public function updateAvatar(ProfileUpdateRequest $request)
+{ 
+    $id = Auth::user()->id;
+ 
 
-//     if ($request->user()->isDirty('email')) {
-//         $request->user()->email_verified_at = null;
-//     }
 
-//     $request->user()->save();
+     $validatedData = $request->validate([
+        "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+        
+    ]);
 
-//     return Redirect::route('profile.edit')->with('status', 'profile-updated');
-// }
+    
+    if ($request->hasFile('avatar')) {
+        $chemin_image = time() . '.' . $request->avatar->extension();
+        $request->avatar->storeAs('public/images', $chemin_image);
+     User::whereId($id)->update([
+    'avatar'=>$chemin_image
+]);
+    } else {
+        // Aucune image n'a été téléchargée, définissez le chemin sur null ou une valeur par défaut
+        $chemin_image = null;
+    }
+    
+  
 
+    // 4. On enregistre les informations du Post
+   
+    return redirect('/monProfil/');
+}
 }

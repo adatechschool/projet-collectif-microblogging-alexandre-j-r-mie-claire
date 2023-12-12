@@ -40,9 +40,6 @@ jobs:
     - name: Generate Application Key
       run: php artisan key:generate
 
-    - name: Check Docker nslookup pgsql
-      run: nslookup pgsql
-
     - name: Run Migrations
       run: php artisan migrate --env=testing --database=testing
 

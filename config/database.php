@@ -78,6 +78,19 @@ return [
             'sslmode' => 'prefer',
         ],
 
+            'testing' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_TESTING_HOST', '127.0.0.1'),
+            'port' => env('DB_TESTING_PORT', '5432'),
+            'database' => env('DB_TESTING_DATABASE', 'testing'),
+            'username' => env('DB_TESTING_USERNAME', 'sail'),
+            'password' => env('DB_TESTING_PASSWORD', 'password'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL'),

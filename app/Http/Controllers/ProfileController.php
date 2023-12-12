@@ -68,4 +68,36 @@ class ProfileController extends Controller
         return view('/profil', compact('user' , 'Posts'));
     
 }
+
+
+public function updateBio(ProfileUpdateRequest $request)
+{ $id = Auth::user()->id;
+    
+
+    
+    $validatedData = $request->validate([
+        'biography' => 'required|max:255',
+        
+    ]);
+    
+  
+    User::whereId($id)->update($validatedData);
+    
+
+    return view('/monProfil/');
+}
+
+// public function updateAvatar(ProfileUpdateRequest $request): RedirectResponse
+// { 
+//     $request->user()->fill($request->validated());
+
+//     if ($request->user()->isDirty('email')) {
+//         $request->user()->email_verified_at = null;
+//     }
+
+//     $request->user()->save();
+
+//     return Redirect::route('profile.edit')->with('status', 'profile-updated');
+// }
+
 }

@@ -66,7 +66,8 @@ Route::get('/monProfil/', function () {
 
 Route::get('/profil/{id}',[ProfileController::class, 'profil'])->middleware(['auth', 'verified'])->name('profile');
 
-
+Route::post('/profil/updateBio',[ProfileController::class, 'updateBio'])->middleware(['auth', 'verified'])->name('updateBio');
+Route::post('/profil/updateAvatar',[ProfileController::class, 'updateAvatar'])->middleware(['auth', 'verified'])->name('updateAvatar');
      
 
 

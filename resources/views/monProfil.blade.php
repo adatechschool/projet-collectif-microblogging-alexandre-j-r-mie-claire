@@ -15,7 +15,7 @@
 
                     
                     <div class="flex justify-center">
-                        <form class="" method="POST" action="{{ url('/monProfil/') }}">
+                        <form class="" method="POST" action="{{ url('/monProfil/updateAvatar') }}">
                             @csrf
                             <label for="file-input">
                             <img class=" flex justify-center w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1780&amp;q=80"/>
@@ -47,7 +47,7 @@
                 <div class=" mb-4 mx-auto bg-white rounded-lg shadow-md">
 
                     <h1 class="text-center">Biography</h1>
-                    <form method="POST" action="{{ url('/monProfil/{$User->id}') }}">
+                    <form method="POST" action="{{ url('/profil/updateBio') }}">
                         @csrf
                         <div class="flex justify-center">
 

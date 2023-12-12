@@ -10,16 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgres:
+       postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: testing
-          POSTGRES_USER: sail
-          POSTGRES_PASSWORD: password
+          DB_TESTING_DATABASE: testing
+          DB_TESTING_USERNAME: sail
+          DB_TESTING_PASSWORD: password
         ports:
           - "5432:5432"
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-          
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5  
 
     steps:
     - name: Checkout code

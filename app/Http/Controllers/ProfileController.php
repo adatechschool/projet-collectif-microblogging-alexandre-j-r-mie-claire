@@ -58,31 +58,46 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-
-    public function updateAvatarOrBio(ProfileUpdateRequest $request ,User $user): RedirectResponse
-    {  {{Auth::user()->name}}
+    public function profil(Request $request, $id)
+    { 
+        $user = User::find($id);
+       $Posts = $user->posts()->get();
        
-        
-        
-        $this->validate($request, [
-            'avatar' =>     'bail|required|image|max:1024',
-            "biography" => 'bail|required|string|max:255',
-        ]);
+
+
+        return view('/profil', compact('user' , 'Posts'));
     
-        // 2. On upload l'image dans "/storage/app/public/posts"
-        $chemin_image = $request->avatar->store("avatar");
+}
+
+
+public function updateBio(ProfileUpdateRequest $request)
+{ $id = Auth::user()->id;
     
 
+    
+    $validatedData = $request->validate([
+        'biography' => 'required|max:255',
+        
+    ]);
+    
+  
+    User::whereId($id)->update($validatedData);
+    
 
-       
-        // 3. On enregistre les informations du Post
-        User::updating([
-            "avatar" => $chemin_image,
-            "biography" => $request->biography, 
-        ]);
+    return redirect('/monProfil/');
+}
 
+// public function updateAvatar(ProfileUpdateRequest $request): RedirectResponse
+// { 
+//     $request->user()->fill($request->validated());
 
+//     if ($request->user()->isDirty('email')) {
+//         $request->user()->email_verified_at = null;
+//     }
 
-        return Redirect::to('/profile/{id}');
-    }
+//     $request->user()->save();
+
+//     return Redirect::route('profile.edit')->with('status', 'profile-updated');
+// }
+
 }

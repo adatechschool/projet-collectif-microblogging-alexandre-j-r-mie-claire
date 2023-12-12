@@ -2,7 +2,6 @@
 
 
 
-
     <div class="overflow-x-hidden bg-gray-100">
 
         <div class="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between">
@@ -120,11 +119,14 @@
                         <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
                         <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
                             <ul class="-mx-4">
-                                @foreach ($Users as $user)
-                                <x-user-row :user="$user" />
-                                @endforeach
-                            </ul>
-                        </div>
+                          <!-- Author Section -->
+                    @foreach ($Users as $user)
+                    <x-card-author :user="$user" />
+                    @endforeach
+                
+            </ul>
+             </div>
+                       
                     </div>
                     <div class="px-8 mt-10">
                         <h1 class="mb-4 text-xl font-bold text-gray-700">Categories</h1>

@@ -87,8 +87,9 @@ return [
             'password' => env('DB_TESTING_PASSWORD', 'password'),
             'charset' => 'utf8',
             'prefix' => '',
-            'strict' => true,
-            'engine' => null,
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [

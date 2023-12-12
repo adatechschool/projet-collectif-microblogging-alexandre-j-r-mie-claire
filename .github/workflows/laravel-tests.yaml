@@ -42,5 +42,8 @@ jobs:
     - name: Run Migrations
       run: php artisan migrate --env=testing --database=testing
 
+    - name: Database Seeding
+      run: php artisan db:seed
+
     - name: Run PHPUnit Tests
       run: php artisan test

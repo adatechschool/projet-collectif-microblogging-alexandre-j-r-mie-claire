@@ -41,7 +41,7 @@ jobs:
       run: php artisan key:generate
 
     - name: Run Migrations
-      run: php artisan migrate --env=testing --database=pgsql
+      run: php artisan migrate --env=testing --database=testing
 
     - name: Run PHPUnit Tests
       run: php artisan test

@@ -9,20 +9,24 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function index() {
-        $Users = User::all(); 
+    public function index()
+    {
+        $Users = User::all();
         $Posts = Post::latest()->get();
-    return view('index',compact('Users', 'Posts'));
-     }
+        return view('index', compact('Users', 'Posts'));
+    }
 
-    public function create() { }
+    public function create()
+    {
+    }
 
-    public function store(Request $request) { 
-//1. la validation
-$this->validate($request, [
-    "image" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
-    "content" => 'bail|required|max:280',
-]);
+    public function store(Request $request)
+    {
+        //1. la validation
+        $this->validate($request, [
+            "image" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+            "content" => 'bail|required|max:280',
+        ]);
 
         // 2. On upload l'image dans "/storage/app/public/posts" si une image a été jointe
         if ($request->hasFile('image')) {
@@ -32,8 +36,8 @@ $this->validate($request, [
             // Aucune image n'a été téléchargée, définissez le chemin sur null ou une valeur par défaut
             $chemin_image = null;
         }
-// 3. On recupère l'id de l'utilistateur connecté 
-$userId = auth()->user()->id;
+        // 3. On recupère l'id de l'utilistateur connecté 
+        $userId = auth()->user()->id;
 
         // 4. On enregistre les informations du Post
         Post::create([
@@ -44,11 +48,19 @@ $userId = auth()->user()->id;
         return redirect(route("index"));
     }
 
-    public function show(Post $post) { }
+    public function show(Post $post)
+    {
+    }
 
-    public function edit(Post $post) { }
+    public function edit(Post $post)
+    {
+    }
 
-    public function update(Request $request, Post $post) { }
+    public function update(Request $request, Post $post)
+    {
+    }
 
-    public function destroy(Post $post) { }
+    public function destroy(Post $post)
+    {
+    }
 }

@@ -10,6 +10,12 @@ services:
             - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
         environment:
             IGNITION_LOCAL_SITES_PATH: "${PWD}"
+            DB_CONNECTION: pgsql
+            DB_HOST: pgsql
+            DB_PORT: 5432
+            DB_DATABASE: microblogging
+            DB_USERNAME: sail
+            DB_PASSWORD: password
         volumes:
             - ".:/app"
         networks:
@@ -20,7 +26,7 @@ services:
     pgsql:
         image: "postgres:15"
         ports:
-            - "${FORWARD_DB_PORT:-5432}:5432"
+            - "${FORWARD_DB_PORT:-5433}:5432"
         environment:
             PGPASSWORD: "${DB_PASSWORD:-secret}"
             POSTGRES_DB: "${DB_DATABASE}"

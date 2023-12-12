@@ -53,21 +53,29 @@ Route::post('/sendPost', function () {
 Route::get('/monProfil/', function () {
     $id = Auth::user()->id;
     $User = User::find($id);
+    $Posts = $User->posts()->get();
 
 
 
-    return view('/monProfil', compact('User'));
+    return view('/monProfil', compact('User','Posts'));
 })->middleware(['auth', 'verified'])->name('monProfile');
 // Route::get('/', function () {
 // return view('auth.login');
 
 // });
 
+Route::get('/profil/{id}',[ProfileController::class, 'profil'])->middleware(['auth', 'verified'])->name('profile');
+
+
+     
+
+
+
 Route::post('/monProfil/', function () {
     Auth::user()->id;
 
 
-    return view('/monProfile');
+    return view('/monProfil');
 })->middleware(['auth', 'verified'])->name('updateBio');
 
 

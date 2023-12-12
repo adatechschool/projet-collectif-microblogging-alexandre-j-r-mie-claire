@@ -13,9 +13,9 @@ jobs:
        postgres:
         image: postgres:15
         env:
-          DB_TESTING_DATABASE: testing
-          DB_TESTING_USERNAME: sail
-          DB_TESTING_PASSWORD: password
+          POSTGRES_USER: sail
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testing
         ports:
           - "5432:5432"
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5  

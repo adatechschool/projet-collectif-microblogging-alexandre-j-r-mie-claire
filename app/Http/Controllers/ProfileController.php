@@ -102,9 +102,9 @@ public function updateAvatar(ProfileUpdateRequest $request)
     if ($request->hasFile('avatar')) {
         $chemin_image = time() . '.' . $request->avatar->extension();
         $request->avatar->storeAs('public/images', $chemin_image);
-     User::whereId($id)->update([
-    'avatar'=>$chemin_image
-]);
+     
+     
+    User::whereId($id)->update(['avatar' => $chemin_image,]);
     } else {
         // Aucune image n'a été téléchargée, définissez le chemin sur null ou une valeur par défaut
         $chemin_image = null;

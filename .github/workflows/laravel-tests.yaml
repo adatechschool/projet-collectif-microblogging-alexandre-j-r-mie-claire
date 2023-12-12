@@ -43,7 +43,7 @@ jobs:
       run: php artisan migrate --env=testing --database=testing
 
     - name: Database Seeding
-      run: php artisan db:seed
+      run: php artisan db:seed --env=testing
 
     - name: Run PHPUnit Tests
       run: php artisan test

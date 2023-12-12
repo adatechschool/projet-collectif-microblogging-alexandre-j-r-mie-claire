@@ -37,7 +37,7 @@
                         <ul class="-mx-4">
 
 
-                            <li><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Alex John</li><span class="text-sm font-light text-gray-700">Created{{count($Posts)}} Posts</span></p>
+                            <li><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">{{$User->name}}</li><span class="text-sm font-light text-gray-700">Created {{count($Posts)}} Posts</span></p>
                             </li>
                     </div>
                 </div>

@@ -84,7 +84,7 @@ public function updateBio(ProfileUpdateRequest $request)
     User::whereId($id)->update($validatedData);
     
 
-    return view('/monProfil/');
+    return redirect('/monProfil/');
 }
 
 // public function updateAvatar(ProfileUpdateRequest $request): RedirectResponse

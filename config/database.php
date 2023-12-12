@@ -78,7 +78,7 @@ return [
             'sslmode' => 'prefer',
         ],
 
-            'testing' => [
+        'testing' => [
             'driver' => 'pgsql',
             'host' => env('DB_TESTING_HOST', '127.0.0.1'),
             'port' => env('DB_TESTING_PORT', '5432'),

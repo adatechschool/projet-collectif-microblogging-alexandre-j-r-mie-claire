@@ -13,7 +13,7 @@
         
             <a href="#" class=" mt-4 ml-2 ">
                 <img
-                    src="{{ asset('storage/images/'.$user->avatar) }}"
+                    src="{{($user->avatar)? asset('storage/images/'.$user->avatar) :asset('storage/images/default-image.png')}}"
                     alt="avatar" class="hidden object-cover w-20 h-20 mx-4 rounded-full sm:block">
                 <h1 class="font-bold text-2xl text-gray-700 hover:underline">{{$user->name}}</h1>
             </a>

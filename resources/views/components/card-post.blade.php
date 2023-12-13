@@ -12,7 +12,7 @@
         </div>
         <div class="flex items-center justify-between mt-4">
             <div><a href={{"/profil/".$post->user->id}} class="flex items-center"><img
-                src="{{ asset('storage/images/'.$post->user->avatar) }}"
+                @if(!$post->user->avatar) src="{{ asset('storage/images/default-image.png') }}" @else src="{{ asset('storage/images/'.$post->user->avatar) }}" @endif
                         alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                     <h1 class="font-bold text-gray-700 hover:underline">{{ $post->user->name }}</h1>
                 </a></div>

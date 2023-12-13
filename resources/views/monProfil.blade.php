@@ -18,7 +18,7 @@
                         <form method="POST" action="{{ route('updateAvatar') }}" enctype="multipart/form-data">
                             @csrf
                             <label for="file-input">
-                            <img class=" flex justify-center w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="{{ asset('storage/images/'.$User->avatar) }}" />
+                            <img class=" flex justify-center w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="{{($User->avatar)? asset('storage/images/'.$User->avatar) :asset('storage/images/default-image.png')}}"/>
                         </label>
                     
                         <input class="hidden" id="file-input" name="avatar" type="file"/>

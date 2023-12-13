@@ -31,7 +31,7 @@
         </div>
     
 <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">Biography.</a>
-    <p class="mt-2  text-l text-gray-600">{{$user->biography}}</p>
+    <p class="mt-2 max-w-md text-l text-gray-600">{{$user->biography}}</p>
 </div>
 </div>
 </div>

@@ -53,7 +53,7 @@
 
 
                             <div>
-                                <textarea :autosize="true" rows="4" cols="50" id="biography" name="biography" type="textarea">{{$User->biography}}
+                                <textarea  rows="4" cols="50" id="biography" name="biography" type="textarea">{{$User->biography}}
                                 </textarea>
 
                             </div>

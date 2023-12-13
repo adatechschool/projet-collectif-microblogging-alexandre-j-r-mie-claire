@@ -19,6 +19,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            
         ]);
     }
 
@@ -93,12 +94,12 @@ public function updateAvatar(ProfileUpdateRequest $request)
  
 
 
-     $validatedData = $request->validate([
-        "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
-        
-    ]);
-
+    $validatedData = $request->validate([
+       "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+       
+   ]);
     
+    if($validatedData){
     if ($request->hasFile('avatar')) {
         $chemin_image = time() . '.' . $request->avatar->extension();
         $request->avatar->storeAs('public/images', $chemin_image);
@@ -106,14 +107,10 @@ public function updateAvatar(ProfileUpdateRequest $request)
      
     User::whereId($id)->update(['avatar' => $chemin_image,]);
     } else {
-        // Aucune image n'a été téléchargée, définissez le chemin sur null ou une valeur par défaut
+      
         $chemin_image = null;
     }
-    
-  
-
-    // 4. On enregistre les informations du Post
-   
+}
     return redirect('/monProfil/');
 }
 }

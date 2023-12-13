@@ -121,7 +121,7 @@
                             <ul class="-mx-4">
                           <!-- Author Section -->
                     @foreach ($Users as $user)
-                    <x-card-author :user="$user" />
+                    <x-card-author :user="$user" :post="$Posts" />
                     @endforeach
                 
             </ul>

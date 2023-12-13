@@ -25,7 +25,7 @@
                     </div>
                     <div  class="flex justify-center">
                     <x-primary-button type="submit">
-                        {{ __('Modifie ta photo') }}
+                        {{ __('Modifie ta photo en cliquant dessus') }}
                     </x-primary-button>
                 </div>
                     </form>

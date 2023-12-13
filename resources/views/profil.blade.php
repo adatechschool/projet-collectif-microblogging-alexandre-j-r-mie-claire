@@ -13,7 +13,7 @@
         
             <a href="#" class=" mt-4 ml-2 ">
                 <img
-                    src="{{$user->avatar}}"
+                    src="{{ asset('storage/images/'.$user->avatar) }}"
                     alt="avatar" class="hidden object-cover w-20 h-20 mx-4 rounded-full sm:block">
                 <h1 class="font-bold text-2xl text-gray-700 hover:underline">{{$user->name}}</h1>
             </a>
@@ -24,7 +24,7 @@
         <li class="flex items-center">{{$user->age}}
             
             <li><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">{{$user->name}}</li><span
-                    class="text-sm font-light text-gray-700">Created{{count($Posts)}} Posts</span></p>
+                    class="text-sm font-light text-gray-700">Created {{count($Posts)}} Posts</span></p>
         </li>
         </div>
         </div>

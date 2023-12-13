@@ -11,8 +11,8 @@
             <p class="mt-2 text-gray-600">{{ $post->content }}</p>
         </div>
         <div class="flex items-center justify-between mt-4">
-            <div><a href="#" class="flex items-center"><img
-                        src="https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=333&amp;q=80"
+            <div><a href={{"/profil/".$post->user->id}} class="flex items-center"><img
+                src="{{ asset('storage/images/'.$post->user->avatar) }}"
                         alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                     <h1 class="font-bold text-gray-700 hover:underline">{{ $post->user->name }}</h1>
                 </a></div>

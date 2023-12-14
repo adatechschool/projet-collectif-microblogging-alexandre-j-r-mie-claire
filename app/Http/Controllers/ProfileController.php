@@ -19,6 +19,7 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            
         ]);
     }
 
@@ -87,17 +88,29 @@ public function updateBio(ProfileUpdateRequest $request)
     return redirect('/monProfil/');
 }
 
-// public function updateAvatar(ProfileUpdateRequest $request): RedirectResponse
-// { 
-//     $request->user()->fill($request->validated());
+public function updateAvatar(ProfileUpdateRequest $request)
+{ 
+    $id = Auth::user()->id;
+ 
 
-//     if ($request->user()->isDirty('email')) {
-//         $request->user()->email_verified_at = null;
-//     }
 
-//     $request->user()->save();
-
-//     return Redirect::route('profile.edit')->with('status', 'profile-updated');
-// }
-
+    $validatedData = $request->validate([
+       "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+       
+   ]);
+    
+    if($validatedData){
+    if ($request->hasFile('avatar')) {
+        $chemin_image = time() . '.' . $request->avatar->extension();
+        $request->avatar->storeAs('public/images', $chemin_image);
+     
+     
+    User::whereId($id)->update(['avatar' => $chemin_image,]);
+    } else {
+      
+        $chemin_image = null;
+    }
+}
+    return redirect('/monProfil/');
+}
 }

@@ -15,17 +15,17 @@
 
                     
                     <div class="flex justify-center">
-                        <form class="" method="POST" action="{{ url('/monProfil/updateAvatar') }}">
+                        <form method="POST" action="{{ route('updateAvatar') }}" enctype="multipart/form-data">
                             @csrf
                             <label for="file-input">
-                            <img class=" flex justify-center w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1780&amp;q=80"/>
+                            <img class=" flex justify-center w-3 cursor-pointer object-cover w-20 h-20 mx-4 rounded-full sm:block" src="{{($User->avatar)? asset('storage/images/'.$User->avatar) :asset('storage/images/default-image.png')}}"/>
                         </label>
                     
-                        <input class="hidden" id="file-input" type="file"/>
+                        <input class="hidden" id="file-input" name="avatar" type="file"/>
                     </div>
                     <div  class="flex justify-center">
                     <x-primary-button type="submit">
-                        {{ __('Modifie ta photo') }}
+                        {{ __('Modifie ta photo en cliquant dessus') }}
                     </x-primary-button>
                 </div>
                     </form>
@@ -53,7 +53,7 @@
 
 
                             <div>
-                                <textarea :autosize="true" rows="4" cols="50" id="biography" name="biography" type="textarea">{{$User->biography}}
+                                <textarea  rows="4" cols="50" id="biography" name="biography" type="textarea">{{$User->biography}}
                                 </textarea>
 
                             </div>

@@ -120,9 +120,8 @@
                         <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
                             <ul class="-mx-4">
                           <!-- Author Section -->
-                    @foreach ($Users as $user)
-                    <x-card-author :user="$user" />
-                    @endforeach
+                    
+                    <x-card-author :users="$Users" :post="$Posts" />
                 
             </ul>
              </div>

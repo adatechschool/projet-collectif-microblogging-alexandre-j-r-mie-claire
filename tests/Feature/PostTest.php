@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,6 +23,7 @@ class PostTest extends TestCase
 
         $response->assertRedirect('/login');
     }
+
     public function testIndexAuth(): void
     {
         $user = User::factory()->create();
@@ -34,14 +36,13 @@ class PostTest extends TestCase
     public function testStoreWithValidDataOnlyText()
     {
         $user = User::factory()->create();
-        $this->actingAs($user);
 
         $postData = [
             'content' => 'Test content',
             'image' => null,
         ];
 
-        $response = $this->post('/', $postData);
+        $response = $this->actingAs($user)->post('/', $postData);
 
         $response->assertStatus(302);
         $this->assertDatabaseHas('posts', ['content' => 'Test content']);
@@ -66,7 +67,7 @@ class PostTest extends TestCase
         $response = $this->actingAs($user)->post('/', $postData);
 
         $response->assertStatus(302);
-        $this->assertDatabaseHas('posts', ['content' => 'Test content']);
+        $this->assertDatabaseHas('posts', ['content' => 'Test content', 'image_path' => 'test_image.jpg']);
     }
 
     public function testStoreWithInvalidData()
@@ -80,6 +81,24 @@ class PostTest extends TestCase
 
         $response = $this->post('/', $invalidPostData);
         $response->assertSessionHasErrors(['content', 'image']);
+    }
+
+    public function test_example(): void
+    {
+
+        $users = User::factory(10)->create();
+
+        $Posts = $users->each(function ($user) {
+            Post::factory(10)->create(['user_id' => $user->id]);
+        });
+
+        $Data = [$users, $Posts];
+
+        $bladeString = '<x-card-author :users="$Data[0]" :post="$Data[1]" />';
+
+        $view = $this->blade($bladeString, $Data);
+
+        $view->assertSee($users->name);
     }
 
 }

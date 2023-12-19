@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $Users = User::all();
         $Posts = Post::latest()->get();
-        return view('index', compact('Users', 'Posts'));
+         return view('index', compact('Users', 'Posts'));
     }
 
     public function create()
@@ -47,7 +47,21 @@ class PostController extends Controller
         ]);
         return redirect(route("index"));
     }
+    public function like(Post $post)
+    {  $user = Auth::user();
+        
 
+    if(!$user->likes()->where('post_id',$post->id)->exists()){
+        $user->likes()->attach($post->id);
+        
+    }else{
+       
+        $user->likes()->detach($post->id);
+
+    }
+    return redirect()->back();
+
+    }
     public function show(Post $post)
     {
     }

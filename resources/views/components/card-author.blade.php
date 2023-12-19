@@ -1,5 +1,5 @@
 
-@if ($user->id != auth()->user()->id)
+
 
 @foreach ($users as $user)
     @if ($user->id != auth()->user()->id)
@@ -12,4 +12,3 @@
 @endforeach
 
         
-@endif

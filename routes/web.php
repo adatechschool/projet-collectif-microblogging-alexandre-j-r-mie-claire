@@ -37,6 +37,9 @@ Route::get('/catégories', function () {
     return view('category');
 })->middleware(['auth', 'verified'])->name('category');
 
+Route::post('/like/{post}',[PostController::class, 'like'])->middleware(['auth', 'verified'])->name('like');
+
+
 
 
 

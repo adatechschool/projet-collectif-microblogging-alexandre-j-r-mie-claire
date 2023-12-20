@@ -33,6 +33,11 @@ public function likes() {
     
 }
 
+public function comment() {
+    return $this->hasMany(Comment::class);
+    
+}
+
 // public function comments() {
 //     return $this->belongsToMany(Post::class,'likes');
     

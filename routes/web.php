@@ -25,8 +25,11 @@ Route::get('/', [PostController::class, 'index'])->middleware(['auth', 'verified
 Route::post('/', [PostController::class, 'store'])->middleware(['auth', 'verified'])->name('createStore');
 
 
-Route::get('/post', function () {
-    return view('post');
+Route::get('/post/{postId}', function ($postId) {
+$post = Post::find($postId);
+
+
+    return view('post',compact('post'));
 })->middleware(['auth', 'verified'])->name('post');
 
 Route::get('/profil', function () {
@@ -39,7 +42,8 @@ Route::get('/catégories', function () {
 
 Route::post('/like/{post}',[PostController::class, 'like'])->middleware(['auth', 'verified'])->name('like');
 
-
+Route::post('/comment/{post}',[PostController::class, 'comments'])->middleware(['auth', 'verified'])->name('comment');
+Route::post('/Showcomment/{post}',[PostController::class, 'ShowComments'])->middleware(['auth', 'verified'])->name('ShowComment');
 
 
 
@@ -93,6 +97,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 require __DIR__ . '/auth.php';

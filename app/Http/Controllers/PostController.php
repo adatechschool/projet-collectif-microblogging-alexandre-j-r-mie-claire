@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,6 +63,31 @@ class PostController extends Controller
     return redirect()->back();
 
     }
+
+    public function comments(Post $post ,Request $request)
+    {  $user = Auth::user();
+        
+
+        $comment = new Comment();
+        $comment->message=$request->message;
+        $comment->post_id=$post->id;
+        $comment->user_id=$user->id;
+
+    ;
+    $comment->save();
+    
+
+    return redirect()->back();
+    }
+    public function ShowComments(Post $post ,Request $request)
+    {  $comment = Comment::where('post_id' ,$post->id)->get();
+
+    
+    
+
+    return redirect()->back($comment);
+    }
+    
     public function show(Post $post)
     {
     }
@@ -77,4 +103,5 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
     }
+
 }

@@ -13,9 +13,11 @@ return new class extends Migration
     { 
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->string('image_path')->nullable();
-            $table->foreignId('user_id')->constrained(); // Clé étrangère liée à la table des utilisateurs
+            $table->text('message');
+            $table->unsignedInteger('post_id');
+        $table->unsignedInteger('user_id');
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users'); // Clé étrangère liée à la table des utilisateurs
             $table->timestamps();
         });
     }

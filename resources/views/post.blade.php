@@ -1,7 +1,7 @@
 <x-app-layout>
 
 
-       
+
     
                
             
@@ -19,61 +19,95 @@
                         
                         
                         <div class="flex items-center justify-between"><span class="font-light text-gray-600">
-                            {{ $post->created_at->format('F j, Y') }}</span><a href="#"
-                            class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Laravel</a>
+                            {{ $post->created_at->format('F j, Y') }}</span>
                         </div>
-                        <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">Build
-                                Your New Idea with Laravel Freamwork.</a>
+                        
                                 <p class="mt-2 text-gray-600">{{ $post->content }}</p>
-                                </div>
-                               
-                                <div class="flex-row flex justify-end">
-                                  <div class="hidden w-4/12 -mx-8 lg:block ">
-                                          <div class="px-8 flex-row justify-end">
+                                
+                                <div class="flex-row flex justify-end mb-2">
+                                    <div class="hidden  -mx-8 lg:block ">
+                                        <div class="px-8 flex-row justify-end">
                                               <h1 class=" text-xl flex justify-center font-bold text-gray-700">Author</h1>
                                               <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
                                                   <ul class="-mx-4">
-                                                                  <li class="flex justify-center "><img
-                                                                    @if(!$post->user->avatar) src="{{ asset('storage/images/default-image.png') }}" @else src="{{ asset('storage/images/'.$post->user->avatar) }}" @endif
-                                                                            alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                                                      <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">{{$post->user->name}}</a><span
-                                                                          class="text-sm font-light text-gray-700">{{$post->user->count()}}</span></p>
-                                                                      </li>
-                                                                      </p>
-                                                                  </li>
-                                                              </ul>
-                                              </div>
-                                          </div>
+                                                      <li class="flex justify-center "><img
+                                                        @if(!$post->user->avatar) src="{{ asset('storage/images/default-image.png') }}" @else src="{{ asset('storage/images/'.$post->user->avatar) }}" @endif
+                                                        alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
+                                                        <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">{{$post->user->name}}</a><span
+                                                            class="text-sm font-light text-gray-700">{{$post->user->posts->count()}} post created</span></p>
+                                                        </li>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </div>
                                       </div>
-                                  </div>
-                    </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                            </div>   
+                            <div class="flex justify-center">
+                            <div class="flex mx-auto items-center justify-center shadow-lg mt-56 mx-8 mb-4 max-w-lg">
+                                <form  method="POST" action="{{ route('comment',['post' => $post])  }}" class="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
+                                    @csrf
+                                    <div class="flex-col flex-wrap -mx-3 mb-6">
+                                      <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
+                                      <div class="w-full md:w-full px-3 mb-2 mt-2">
+                                         <textarea class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="message" placeholder='Type Your Comment' required></textarea>
+                                      </div>
+                                      <div class="w-full md:w-full flex-col items-start md:w-full px-3">
+                                         <div class="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
+                                            <svg fill="none" class="w-5 h-5 text-gray-600 mr-1" viewBox="0 0 24 24" stroke="currentColor">
+                                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <p class="text-xs md:text-sm pt-px">Some HTML is okay.</p>
+                                         </div>
+                                         <div class="-mr-1">
+                                            <input type='submit' class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value='Post Comment'>
+                                         </div>
+                                      </div>
+                                   </form>
+                                </div>
+                             </div>
+                        </div>
+                        <div class="">
+                            
+                            
+                            
+                            <div class="flex-col flex justify-center relative top-1/3 max-w-4xl mx-auto">
                 
-                    </div>
-                    <form method="POST" action="{{ route('comment',['post' => $post])  }}">
-                        @csrf
-                    <button type="submit" flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
-                        <svg width="22px" height="22px" viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22ZM8 13.25C7.58579 13.25 7.25 13.5858 7.25 14C7.25 14.4142 7.58579 14.75 8 14.75H13.5C13.9142 14.75 14.25 14.4142 14.25 14C14.25 13.5858 13.9142 13.25 13.5 13.25H8ZM7.25 10.5C7.25 10.0858 7.58579 9.75 8 9.75H16C16.4142 9.75 16.75 10.0858 16.75 10.5C16.75 10.9142 16.4142 11.25 16 11.25H8C7.58579 11.25 7.25 10.9142 7.25 10.5Z"></path>
-                            </g>
-                        </svg>
-
-                        
-                    commente clique ici</button>
-                    <x-text-input  class="block mt-1 w-full"
-                    type="text"
-                    name="message"
-                    required  />
-                </form>
+                
+                
+                
+                                  
+                                    
+                                    
+                                    @foreach ($post->comment->sortByDesc('created_at') as $comment)
+                                      <!-- This is an example component -->
+                                      <div class="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg mb-2 ">
+                                        <div class="relative flex gap-4">
+                                            <img src="{{ asset('storage/images/'.$comment->user->avatar) }}" class="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20" alt="" loading="lazy">
+                                            <div class="flex flex-col w-full">
+                                                <div class="flex flex-row justify-between">
+                                                    <p class="relative text-xl whitespace-nowrap truncate overflow-hidden">{{$comment->user->name}}</p>
+                                                    <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">{{ $comment->created_at->format('F j, Y') }}</p>
+                                            </div>
+                                        </div>
+                                        <p class="-mt-4 text-gray-500">{{$comment->message}}</p>
+                                    </div>
+                                    
+                                            @endforeach
+                                </div>
+                              
+                        </div>
                 </div>
-                @foreach ($post->comment->sortByDesc('created_at') as $comment)
-                <div>{{$comment->user->name}}</div>
-                        <div>{{$comment->message}}</div>
-                        @endforeach
-            </div>
-        </div>
+    </div>
     
             
                     <div class="mt-8">

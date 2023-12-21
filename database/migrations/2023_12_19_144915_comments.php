@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->text('message');
             $table->unsignedInteger('post_id');
-        $table->unsignedInteger('user_id');
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('user_id')->references('id')->on('users'); // Clé étrangère liée à la table des utilisateurs
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Clé étrangère liée à la table des utilisateurs
+            $table->unsignedInteger('user_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
         });
     }

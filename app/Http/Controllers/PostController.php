@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         //1. la validation
         $this->validate($request, [
-            "image" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+            "image" => 'bail|nullable|image|mimes:png,jpg,jpeg,svg|max:5120',
             "content" => 'bail|required|max:280',
         ]);
 

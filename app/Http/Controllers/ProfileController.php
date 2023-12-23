@@ -95,7 +95,7 @@ public function updateAvatar(ProfileUpdateRequest $request)
 
 
     $validatedData = $request->validate([
-       "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg|max:5120',
+       "avatar" => 'bail|nullable|image|mimes:png,jpg,jpeg,svg|max:5120',
        
    ]);
     
